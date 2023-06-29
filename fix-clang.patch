@@ -1,0 +1,12 @@
+diff -ur httpry-0.1.8/Makefile httpry-0.1.8/Makefile
+--- httpry-0.1.8/Makefile	2014-06-05 00:08:42.000000000 +0800
++++ httpry-0.1.8/Makefile	2023-06-19 10:14:56.973810809 +0800
+@@ -6,7 +6,7 @@
+ #  Copyright (c) 2005-2014 Jason Bittel <jason.bittel@gmail.com>
+ #
+ 
+-CC		= gcc
++CC		?= gcc
+ CCFLAGS  	= -Wall -O3 -funroll-loops -I/usr/include/pcap -I/usr/local/include/pcap
+ DEBUGFLAGS	= -Wall -g -DDEBUG -I/usr/include/pcap -I/usr/local/include/pcap
+ LIBS		= -lpcap -lm -pthread

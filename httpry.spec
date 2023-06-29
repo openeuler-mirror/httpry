@@ -1,10 +1,11 @@
 Summary:             A specialized packet sniffer designed for displaying and logging HTTP traffic
 Name:                httpry
 Version:             0.1.8
-Release:             1
+Release:             2
 License:             GPLv2 and BSD
 URL:                 http://dumpsterventures.com/jason/httpry/
 Source:              http://dumpsterventures.com/jason/httpry/httpry-%{version}.tar.gz
+Patch0:fix-clang.patch
 BuildRequires:       gcc libpcap-devel make
 %description
 httpry is a specialized packet sniffer designed for displaying and logging
@@ -16,6 +17,7 @@ so that it can be easily adaptable to different applications.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 sed -i 's/^CCFLAGS.*$/CCFLAGS = \$(RPM_OPT_FLAGS) \$(RPM_LD_FLAGS) -I\/usr\/include\/pcap -I\/usr\/local\/include\/pcap/' Makefile
@@ -34,5 +36,8 @@ install -Dp -m 0644 %{name}.1 %{buildroot}%{_mandir}/man1/%{name}.1
 %{_mandir}/man1/httpry.1*
 
 %changelog
+* Mon Jun 19 2023 zhangxiang <zhangxiang@iscas.ac.cn> - 0.1.8-2
+- Fix clang build error
+
 * Mon Sep 6 2021 wulei <wulei80@huawei.com> - 0.1.8-1
 - package init
